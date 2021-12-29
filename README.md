@@ -9,7 +9,7 @@ Necesario python 3.7+
 
 Para el el correcto funcionamiento de _daemon_ en windows es necesario acceder a las variables de entorno del sistema y declarar una variable llamada **DAGSTER_HOME** con la ruta en donde se encuentra la carpeta *dagster_home**
 
-_**Ejmeplo**_
+_**Ejemplo**_
 ```
  #Ejemplo: \c\Users\Usuario\Documents\data-engineering\pipelines\dagster\dagster_home
 ```
