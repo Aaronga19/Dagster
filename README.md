@@ -17,14 +17,33 @@ DAGSTER_PG_DB = nombre_bd
 DAGSTER_PG_PORT = puerto
 ```
 
-Para ejecutar el script es necesaria situarse en la carpeta raíz del proyecto y ejecutar la siguiente sentencia.
+Para ejecutar el script es necesario situarse en la carpeta raíz del proyecto y ejecutar la siguiente sentencia:
 
 ```
-python3 ETL.py
+python ETL.py
 ```
-O a través de dagit hay que ejecutar la siguiente sentencia
+O a través de dagit (IU) hay que ejecutar la siguiente sentencia:
 
 ```
 dagit -f ETL.py
 ```
-Y dentro del servidor en la pestaña de _launchpad_ presionar el boton _**launch run**_
+Y dentro del servidor en la pestaña de _launchpad_ presionar el boton _**launch run**_ y llevará a cabo el pipeline.
+
+## Schedule
+
+**Importante** 
+
+Para el schedule de este pipeline es necesario correr el siguiente comando en una terminal y mantenerlo activo, el cual leera el archivo _dagster.yaml_
+```
+dagster-daemon run
+```
+
+Una vez activado el _daemon_, en otra terminal ejecutamos el comando:
+
+```
+dagit -f ETL.py
+```
+
+Dentro de la IU de dagit ingresamos revisamos el status y nos dirigiremos a _schedules_, una vez estemos dentro de la ruta, activamos el schedule _**update_warehouse_schedule**_ presionando el toogle
+### Final
+Ya que se activo esta funcionalidad, el pipeline se ejecutará cada 24hrs a las 2:00AM.
