@@ -6,7 +6,7 @@ class Settings(BaseSettings):
     dagster_pg_password: str
     dagster_pg_host:str
     dagster_pg_db: str
-    dagster_pg_port: str
+    dagster_pg_port: int
 
     class Config:
         env_file = ".env"

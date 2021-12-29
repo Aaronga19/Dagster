@@ -1,6 +1,6 @@
 import requests
 import csv
-from dagster import job, op, get_dagster_logger
+from dagster import job, op, get_dagster_logger, schedule, repository
 
 
 @op
@@ -18,6 +18,20 @@ def hello_cereal():
 @job
 def hello_cereal_job():
     hello_cereal()
+
+@schedule(
+    cron_schedule="* * * * *",
+    job=hello_cereal_job,
+    execution_timezone="America/Mexico_City",
+)
+def good_morning_schedule(context):
+    date = context.scheduled_execution_time.strftime("%Y-%m-%d")
+    return {"ops": {"hello_cereal": {"config": {"date": date}}}}
+
+@repository
+def hello_cereal_repository():
+    return [hello_cereal_job, good_morning_schedule]
+
 
 if __name__ == "__main__":
     result = hello_cereal_job.execute_in_process()

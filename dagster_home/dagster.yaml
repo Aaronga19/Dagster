@@ -4,7 +4,7 @@ run_storage:
   config:
     postgres_db:
       username: postgres
-      password: Colesman1<
+      password: password
       hostname: localhost
       db_name: dagster
       port: 5432
@@ -14,7 +14,7 @@ event_log_storage:
   config:
     postgres_db:
       username: postgres
-      password: Colesman1<
+      password: password
       hostname: localhost
       db_name: dagster
       port: 5432
@@ -24,7 +24,11 @@ schedule_storage:
   config:
     postgres_db:
       username: postgres
-      password: Colesman1<
+      password: password
       hostname: localhost
       db_name: dagster
       port: 5432
+      
+run_launcher:
+  module: dagster.core.launcher
+  class: DefaultRunLauncher
